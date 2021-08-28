@@ -1,7 +1,7 @@
 {
     "version": 2,
     "functions": {
-        "public/*.js": {
+        "public/api/*.js": {
             "memory": 1024,
             "maxDuration": 10
         }
