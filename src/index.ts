@@ -1,5 +1,4 @@
 import express from 'express'
-import { VercelRequest, VercelResponse } from '@vercel/node'
 const app = express()
 const port = 3099
 
@@ -15,4 +14,4 @@ app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`)
 })
 
-export { app };
+module.exports = app;
