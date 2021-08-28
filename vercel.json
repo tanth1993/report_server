@@ -3,7 +3,7 @@
     "functions": {
         "public/*.js": {
             "memory": 3008,
-            "maxDuration": 60
+            "maxDuration": 10
         }
     }
 }
