@@ -4,13 +4,13 @@ const port = 3099
 
 
 app.get('/api/test', (req, res) => {
-    res.send('tesst APi here!')
+    res.send('tesst APi here2222222!')
 })
 app.get('/api/entry', (req, res) => {
-    res.send('entry API fucking here!')
+    res.send('entry API fucking here2222222!')
 })
 app.get('/api', (req, res) => {
-    res.send('Hello World heheheheh!')
+    res.send('Hello World 2222222!')
 })
 
 app.listen(port, () => {

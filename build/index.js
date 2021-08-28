@@ -7,13 +7,13 @@ var express_1 = __importDefault(require("express"));
 var app = express_1.default();
 var port = 3099;
 app.get('/api/test', function (req, res) {
-    res.send('tesst APi here!');
+    res.send('tesst APi here2222222!');
 });
 app.get('/api/entry', function (req, res) {
-    res.send('entry API fucking here!');
+    res.send('entry API fucking here2222222!');
 });
 app.get('/api', function (req, res) {
-    res.send('Hello World heheheheh!');
+    res.send('Hello World 2222222!');
 });
 app.listen(port, function () {
     console.log("Example app listening at http://localhost:" + port);
