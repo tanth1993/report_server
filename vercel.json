@@ -1,9 +1,15 @@
 {
     "version": 2,
-    "functions": {
-        "public/api/*.js": {
-            "memory": 1024,
-            "maxDuration": 10
+    "builds": [
+        {
+            "src": "build/index.js",
+            "use": "@vercel/node"
         }
-    }
+    ],
+    "rewrites": [
+        {
+            "source": "/api/(.*)",
+            "destination": "/build/index.js"
+        }
+    ]
 }
