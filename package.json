@@ -16,8 +16,8 @@
     "vercel": "^23.1.2"
   },
   "scripts": {
-    "start": "nodemon ./api/index.ts",
-    "build": ""
+    "start": "nodemon ./src/index.ts",
+    "build": "tsc -p ./"
   },
   "keywords": [],
   "author": "",
