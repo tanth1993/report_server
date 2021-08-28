@@ -1,9 +1,9 @@
 {
     "version": 2,
-    "builds": [
-        {
-            "src": "pulic/index.js",
-            "use": "@now/node-server"
+    "functions": {
+        "public/*.js": {
+            "memory": 3008,
+            "maxDuration": 60
         }
-    ]
+    }
 }
