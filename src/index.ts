@@ -1,17 +1,18 @@
-import express from 'express'
+import express, { json } from 'express'
 import { TestModel, connectDB } from './_config'
-
+import cors from 'cors'
 const app = express()
 const port = 3099
 
 connectDB()
 
+app.use(cors())
 app.get('/api/test', async (req, res) => {
-    const test = await TestModel.find({})
 
     try {
-        console.log(test)
-        res.send(test);
+        const test = await TestModel.find({})
+        // console.log(test)
+        res.send(JSON.stringify(test));
     } catch (error) {
         console.log(error)
         res.status(500).send(error);
