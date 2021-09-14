@@ -41,11 +41,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = __importDefault(require("express"));
 var _config_1 = require("./_config");
-var cors_1 = __importDefault(require("cors"));
 var app = express_1.default();
 var port = 3099;
 _config_1.connectDB();
-app.use(cors_1.default());
+// app.use(cors())
 app.get('/api/test', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var test, error_1;
     return __generator(this, function (_a) {
