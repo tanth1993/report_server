@@ -6,7 +6,7 @@ const port = 3099
 
 connectDB()
 
-// app.use(cors())
+app.use(cors())
 app.get('/api/test', async (req, res) => {
 
     try {
