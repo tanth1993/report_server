@@ -6,8 +6,8 @@ const dbName = 'reports'
 const uri = `mongodb+srv://${userName}:${pass}@cluster0.3ecjs.mongodb.net/${dbName}?retryWrites=true&w=majority`
 
 
-export function connectDB() {
-    connect(uri);
+export async function connectDB() {
+    await connect(uri);
 }
 
 interface Test {
