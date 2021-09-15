@@ -62,6 +62,7 @@ var port = 3099;
 //     }
 //     return await fn(req, res)
 // }
+// app.use(express.json());
 app.use(cors_1.default());
 app.get('/api/test', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var test, error_1;
@@ -92,16 +93,9 @@ app.get('/api/entry', function (req, res) {
 app.get('/api', function (req, res) {
     res.send('Hello World 2222222!');
 });
-app.listen(port, function () { return __awaiter(void 0, void 0, void 0, function () {
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0: return [4 /*yield*/, _config_1.connectDB()];
-            case 1:
-                _a.sent();
-                console.log("App is listening at http://localhost:" + port);
-                return [2 /*return*/];
-        }
-    });
-}); });
+app.listen(port, function () {
+    // await connectDB()
+    console.log("App is listening at http://localhost:" + port);
+});
 module.exports = app;
 //# sourceMappingURL=index.js.map

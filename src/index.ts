@@ -1,5 +1,5 @@
 import express, { json } from 'express'
-import { TestModel, connectDB } from './_config'
+import { TestModel } from './_config'
 import cors from 'cors'
 const app = express()
 const port = 3099
@@ -23,7 +23,7 @@ const port = 3099
 //     }
 //     return await fn(req, res)
 // }
-
+// app.use(express.json());
 app.use(cors())
 app.get('/api/test', async (req, res) => {
     try {
@@ -43,8 +43,8 @@ app.get('/api', (req, res) => {
     res.send('Hello World 2222222!')
 })
 
-app.listen(port, async () => {
-    await connectDB()
+app.listen(port, () => {
+    // await connectDB()
     console.log(`App is listening at http://localhost:${port}`)
 })
 
