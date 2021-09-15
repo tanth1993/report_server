@@ -41,10 +41,28 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = __importDefault(require("express"));
 var _config_1 = require("./_config");
+var cors_1 = __importDefault(require("cors"));
 var app = express_1.default();
 var port = 3099;
-_config_1.connectDB();
-// app.use(cors())
+// connectDB().catch(err => console.log(err));
+// app.use(async () => await connectDB())
+// const allowCors = fn => async (req, res) => {
+//     res.setHeader('Access-Control-Allow-Credentials', true)
+//     res.setHeader('Access-Control-Allow-Origin', '*')
+//     // another common pattern
+//     // res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
+//     res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT')
+//     res.setHeader(
+//         'Access-Control-Allow-Headers',
+//         'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
+//     )
+//     if (req.method === 'OPTIONS') {
+//         res.status(200).end()
+//         return
+//     }
+//     return await fn(req, res)
+// }
+app.use(cors_1.default());
 app.get('/api/test', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var test, error_1;
     return __generator(this, function (_a) {
@@ -57,7 +75,7 @@ app.get('/api/test', function (req, res) { return __awaiter(void 0, void 0, void
             case 1:
                 test = _a.sent();
                 // console.log(test)
-                res.send(JSON.stringify(test));
+                res.json(test);
                 return [3 /*break*/, 3];
             case 2:
                 error_1 = _a.sent();
@@ -74,8 +92,16 @@ app.get('/api/entry', function (req, res) {
 app.get('/api', function (req, res) {
     res.send('Hello World 2222222!');
 });
-app.listen(port, function () {
-    console.log("App is listening at http://localhost:" + port);
-});
+app.listen(port, function () { return __awaiter(void 0, void 0, void 0, function () {
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0: return [4 /*yield*/, _config_1.connectDB()];
+            case 1:
+                _a.sent();
+                console.log("App is listening at http://localhost:" + port);
+                return [2 /*return*/];
+        }
+    });
+}); });
 module.exports = app;
 //# sourceMappingURL=index.js.map
