@@ -45,23 +45,6 @@ var _config_2 = require("./_config");
 var cors_1 = __importDefault(require("cors"));
 var app = express_1.default();
 var port = 3099;
-// const allowCors = fn => async (req, res) => {
-//     res.setHeader('Access-Control-Allow-Credentials', true)
-//     res.setHeader('Access-Control-Allow-Origin', '*')
-//     // another common pattern
-//     // res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
-//     res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT')
-//     res.setHeader(
-//         'Access-Control-Allow-Headers',
-//         'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
-//     )
-//     if (req.method === 'OPTIONS') {
-//         res.status(200).end()
-//         return
-//     }
-//     return await fn(req, res)
-// }
-// app.use(express.json());
 _config_2.dbConnection(function () {
     app.use(cors_1.default());
     app.get('/api/test', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
@@ -70,20 +53,17 @@ _config_2.dbConnection(function () {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
-                    return [4 /*yield*/, _config_1.TestModel.find({})
-                        // console.log(test)
-                    ];
+                    return [4, _config_1.TestModel.find({})];
                 case 1:
                     test = _a.sent();
-                    // console.log(test)
                     res.json(test);
-                    return [3 /*break*/, 3];
+                    return [3, 3];
                 case 2:
                     error_1 = _a.sent();
                     console.log(error_1);
                     res.status(500).send(error_1);
-                    return [3 /*break*/, 3];
-                case 3: return [2 /*return*/];
+                    return [3, 3];
+                case 3: return [2];
             }
         });
     }); });
@@ -97,5 +77,5 @@ _config_2.dbConnection(function () {
         console.log("App is listening at http://localhost:" + port);
     });
 });
-module.exports = app;
+module.exports = _config_2.dbConnection;
 //# sourceMappingURL=index.js.map

@@ -49,4 +49,4 @@ dbConnection(() => {
     })
 })
 
-module.exports = app;
+module.exports = dbConnection;
