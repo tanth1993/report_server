@@ -24,29 +24,29 @@ const port = 3099
 // }
 // app.use(express.json());
 
-dbConnection(() => {
-    app.use(cors())
-    app.get('/api/test', async (req, res) => {
-        try {
-            const test = await TestModel.find({})
-            // console.log(test)
-            res.json(test);
-        } catch (error) {
-            console.log(error)
-            res.status(500).send(error);
-        }
-    })
-
-    app.get('/api/entry', (req, res) => {
-        res.send('entry API fucking here2222222!')
-    })
-    app.get('/api', (req, res) => {
-        res.send('Hello World 2222222!')
-    })
-
-    app.listen(port, () => {
-        console.log(`App is listening at http://localhost:${port}`)
-    })
+app.use(cors())
+app.get('/api/test', async (req, res) => {
+    try {
+        await dbConnection()
+        const test = await TestModel.find({})
+        // console.log(test)
+        res.json(test);
+    } catch (error) {
+        console.log(error)
+        res.status(500).send(error);
+    }
 })
 
-module.exports = dbConnection;
+app.get('/api/entry', (req, res) => {
+
+    res.send('entry API fucking here2222222!')
+})
+app.get('/api', (req, res) => {
+    res.send('Hello World 2222222!')
+})
+
+app.listen(port, () => {
+    console.log(`App is listening at http://localhost:${port}`)
+})
+
+module.exports = app;

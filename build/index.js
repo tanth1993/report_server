@@ -45,37 +45,38 @@ var _config_2 = require("./_config");
 var cors_1 = __importDefault(require("cors"));
 var app = express_1.default();
 var port = 3099;
-_config_2.dbConnection(function () {
-    app.use(cors_1.default());
-    app.get('/api/test', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-        var test, error_1;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    _a.trys.push([0, 2, , 3]);
-                    return [4, _config_1.TestModel.find({})];
-                case 1:
-                    test = _a.sent();
-                    res.json(test);
-                    return [3, 3];
-                case 2:
-                    error_1 = _a.sent();
-                    console.log(error_1);
-                    res.status(500).send(error_1);
-                    return [3, 3];
-                case 3: return [2];
-            }
-        });
-    }); });
-    app.get('/api/entry', function (req, res) {
-        res.send('entry API fucking here2222222!');
+app.use(cors_1.default());
+app.get('/api/test', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var test, error_1;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                _a.trys.push([0, 3, , 4]);
+                return [4, _config_2.dbConnection()];
+            case 1:
+                _a.sent();
+                return [4, _config_1.TestModel.find({})];
+            case 2:
+                test = _a.sent();
+                res.json(test);
+                return [3, 4];
+            case 3:
+                error_1 = _a.sent();
+                console.log(error_1);
+                res.status(500).send(error_1);
+                return [3, 4];
+            case 4: return [2];
+        }
     });
-    app.get('/api', function (req, res) {
-        res.send('Hello World 2222222!');
-    });
-    app.listen(port, function () {
-        console.log("App is listening at http://localhost:" + port);
-    });
+}); });
+app.get('/api/entry', function (req, res) {
+    res.send('entry API fucking here2222222!');
 });
-module.exports = _config_2.dbConnection;
+app.get('/api', function (req, res) {
+    res.send('Hello World 2222222!');
+});
+app.listen(port, function () {
+    console.log("App is listening at http://localhost:" + port);
+});
+module.exports = app;
 //# sourceMappingURL=index.js.map
