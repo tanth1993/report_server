@@ -41,11 +41,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = __importDefault(require("express"));
 var _config_1 = require("./_config");
+var _config_2 = require("./_config");
 var cors_1 = __importDefault(require("cors"));
 var app = express_1.default();
 var port = 3099;
-// connectDB().catch(err => console.log(err));
-// app.use(async () => await connectDB())
 // const allowCors = fn => async (req, res) => {
 //     res.setHeader('Access-Control-Allow-Credentials', true)
 //     res.setHeader('Access-Control-Allow-Origin', '*')
@@ -63,39 +62,40 @@ var port = 3099;
 //     return await fn(req, res)
 // }
 // app.use(express.json());
-app.use(cors_1.default());
-app.get('/api/test', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var test, error_1;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0:
-                _a.trys.push([0, 2, , 3]);
-                return [4 /*yield*/, _config_1.TestModel.find({})
+_config_2.dbConnection(function () {
+    app.use(cors_1.default());
+    app.get('/api/test', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+        var test, error_1;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    return [4 /*yield*/, _config_1.TestModel.find({})
+                        // console.log(test)
+                    ];
+                case 1:
+                    test = _a.sent();
                     // console.log(test)
-                ];
-            case 1:
-                test = _a.sent();
-                // console.log(test)
-                res.json(test);
-                return [3 /*break*/, 3];
-            case 2:
-                error_1 = _a.sent();
-                console.log(error_1);
-                res.status(500).send(error_1);
-                return [3 /*break*/, 3];
-            case 3: return [2 /*return*/];
-        }
+                    res.json(test);
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_1 = _a.sent();
+                    console.log(error_1);
+                    res.status(500).send(error_1);
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    }); });
+    app.get('/api/entry', function (req, res) {
+        res.send('entry API fucking here2222222!');
     });
-}); });
-app.get('/api/entry', function (req, res) {
-    res.send('entry API fucking here2222222!');
-});
-app.get('/api', function (req, res) {
-    res.send('Hello World 2222222!');
-});
-app.listen(port, function () {
-    // await connectDB()
-    console.log("App is listening at http://localhost:" + port);
+    app.get('/api', function (req, res) {
+        res.send('Hello World 2222222!');
+    });
+    app.listen(port, function () {
+        console.log("App is listening at http://localhost:" + port);
+    });
 });
 module.exports = app;
 //# sourceMappingURL=index.js.map
