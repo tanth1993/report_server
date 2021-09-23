@@ -36,42 +36,33 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var mongoose_1 = require("mongoose");
-var userName = 'tan2cang';
-var pass = 'tan123456';
-var dbName = 'reports';
-var uri = "mongodb+srv://" + userName + ":" + pass + "@cluster0.3ecjs.mongodb.net/" + dbName + "?retryWrites=true&w=majority";
-var cached = global.mongoose;
-if (!cached) {
-    cached = global.mongoose = { conn: null, promise: null };
-}
-function dbConnection() {
-    return __awaiter(this, void 0, void 0, function () {
-        var _a;
-        return __generator(this, function (_b) {
-            switch (_b.label) {
-                case 0:
-                    if (cached.conn) {
-                        return [2, cached.conn];
-                    }
-                    if (!cached.promise) {
-                        cached.promise = mongoose_1.connect(uri).then(function (mongoose) {
-                            return mongoose;
-                        });
-                    }
-                    _a = cached;
-                    return [4, cached.promise];
-                case 1:
-                    _a.conn = _b.sent();
-                    return [2, cached.conn];
-            }
+var models_1 = require("@dev/models");
+var GeoController = (function () {
+    function GeoController() {
+    }
+    GeoController.prototype.index = function (req, res) {
+        return __awaiter(this, void 0, void 0, function () {
+            var geo, error_1;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        return [4, models_1.GeoSchema.find({}).limit(1)];
+                    case 1:
+                        geo = _a.sent();
+                        res.json(geo);
+                        return [3, 3];
+                    case 2:
+                        error_1 = _a.sent();
+                        console.log(error_1);
+                        res.status(500).send(error_1);
+                        return [3, 3];
+                    case 3: return [2];
+                }
+            });
         });
-    });
-}
-var db = mongoose_1.connection;
-db.on("error", console.error.bind(console, "connection error: "));
-db.once("open", function () {
-    console.log("Mongo Atlas Connected successfully");
-});
-exports.default = dbConnection;
-//# sourceMappingURL=index.js.map
+    };
+    return GeoController;
+}());
+exports.default = new GeoController();
+//# sourceMappingURL=GeoController.js.map

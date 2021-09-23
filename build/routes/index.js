@@ -35,43 +35,26 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-var mongoose_1 = require("mongoose");
-var userName = 'tan2cang';
-var pass = 'tan123456';
-var dbName = 'reports';
-var uri = "mongodb+srv://" + userName + ":" + pass + "@cluster0.3ecjs.mongodb.net/" + dbName + "?retryWrites=true&w=majority";
-var cached = global.mongoose;
-if (!cached) {
-    cached = global.mongoose = { conn: null, promise: null };
-}
-function dbConnection() {
-    return __awaiter(this, void 0, void 0, function () {
-        var _a;
-        return __generator(this, function (_b) {
-            switch (_b.label) {
-                case 0:
-                    if (cached.conn) {
-                        return [2, cached.conn];
-                    }
-                    if (!cached.promise) {
-                        cached.promise = mongoose_1.connect(uri).then(function (mongoose) {
-                            return mongoose;
-                        });
-                    }
-                    _a = cached;
-                    return [4, cached.promise];
-                case 1:
-                    _a.conn = _b.sent();
-                    return [2, cached.conn];
-            }
-        });
+var express_1 = require("express");
+var _config_1 = __importDefault(require("@dev/_config"));
+var testRoute_1 = __importDefault(require("./testRoute"));
+var geoRoute_1 = __importDefault(require("./geoRoute"));
+var router = express_1.Router();
+router.use(function (req, res, next) { return __awaiter(void 0, void 0, void 0, function () {
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0: return [4, _config_1.default()];
+            case 1:
+                _a.sent();
+                return [2, next()];
+        }
     });
-}
-var db = mongoose_1.connection;
-db.on("error", console.error.bind(console, "connection error: "));
-db.once("open", function () {
-    console.log("Mongo Atlas Connected successfully");
-});
-exports.default = dbConnection;
+}); });
+router.use('/test', testRoute_1.default);
+router.use('/geo', geoRoute_1.default);
+exports.default = router;
 //# sourceMappingURL=index.js.map

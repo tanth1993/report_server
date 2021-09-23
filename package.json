@@ -5,7 +5,8 @@
   "main": "index.js",
   "dependencies": {
     "cors": "^2.8.5",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "tsconfig-paths": "^3.11.0"
   },
   "devDependencies": {
     "@types/cors": "^2.8.12",
@@ -20,7 +21,7 @@
     "vercel": "^23.1.2"
   },
   "scripts": {
-    "start": "nodemon ./src/index.ts",
+    "start": "nodemon -e ts,js --exec ts-node -r tsconfig-paths/register ./src/index.ts",
     "build": "tsc -p ./"
   },
   "keywords": [],

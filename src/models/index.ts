@@ -1,0 +1,1 @@
+export { TestModel, GeoSchema } from './Test'
