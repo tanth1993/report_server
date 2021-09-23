@@ -40,7 +40,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = require("express");
-var _config_1 = __importDefault(require("@dev/_config"));
+var _config_1 = __importDefault(require("../_config"));
 var testRoute_1 = __importDefault(require("./testRoute"));
 var geoRoute_1 = __importDefault(require("./geoRoute"));
 var router = express_1.Router();

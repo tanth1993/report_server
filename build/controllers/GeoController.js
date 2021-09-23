@@ -39,8 +39,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var models_1 = require("@dev/models");
-var _config_1 = __importDefault(require("@dev/_config"));
+var models_1 = require("../models");
+var _config_1 = __importDefault(require("../_config"));
 var GeoController = (function () {
     function GeoController() {
     }
