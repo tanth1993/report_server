@@ -7,6 +7,9 @@ const port = 3099
 app.use(cors())
 
 app.use('/api', Router)
+app.use('/api/entry', (req, res) => {
+    res.send('api/entry without connect MongoDB')
+})
 app.listen(port, () => {
     console.log(`App is listening at http://localhost:${port}`)
 })
