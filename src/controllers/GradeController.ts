@@ -1,13 +1,12 @@
 import { Request, Response, NextFunction } from 'express';
-import { TestModel } from '@dev/models'
+import { GradeModel } from '@dev/models'
 
-class TestController {
+class GradeController {
     constructor() { }
 
     async index(req: Request, res: Response) {
         try {
-            // await dbConnection()
-            const test = await TestModel.find({})
+            const test = await GradeModel.find({})
             res.json(test);
         } catch (error) {
             console.log(error)
@@ -16,4 +15,4 @@ class TestController {
 
     }
 }
-export default new TestController()
+export default new GradeController()

@@ -1,1 +1,6 @@
-export { TestModel, GeoSchema } from './Test'
+export { GradeElevenScoreModel } from './GradeElevenScoreModel'
+export { GradeModel } from './GradeModel'
+export { GradeTenScoreModel } from './GradeTenScoreModel'
+export { GradeTwelveScoreModel } from './GradeTwelveScoreModel'
+export { StudentModel } from './StudentModel'
+export { SubjectModel } from './SubjectModel'

@@ -1,14 +1,13 @@
 import { Request, Response, NextFunction } from 'express';
-import { GeoSchema } from '@dev/models'
+import { StudentModel } from '@dev/models'
 
-class GeoController {
+class StudentController {
     constructor() { }
 
     async index(req: Request, res: Response) {
         try {
-            // await dbConnection()
-            const geo = await GeoSchema.find({}).limit(1)
-            res.json(geo);
+            const test = await StudentModel.find({})
+            res.json(test);
         } catch (error) {
             console.log(error)
             res.status(500).send(error);
@@ -16,4 +15,4 @@ class GeoController {
 
     }
 }
-export default new GeoController()
+export default new StudentController()

@@ -1,7 +1,7 @@
 import { Router } from 'express'
 import dbConnection from '@dev/_config'
-import testRoute from './testRoute'
-import geoRoute from './geoRoute'
+import SubjectController from '@dev/controllers/SubjectController'
+import from '@dev/controllers/'
 const router = Router()
 
 router.use(async (req, res, next) => {
@@ -9,7 +9,6 @@ router.use(async (req, res, next) => {
     return next()
 })
 
-router.use('/test', testRoute)
-router.use('/geo', geoRoute)
+router.use('/subject', SubjectController.index)
 
 export default router
