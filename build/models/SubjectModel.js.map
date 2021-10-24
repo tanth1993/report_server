@@ -1,0 +1,1 @@
+{"version":3,"file":"SubjectModel.js","sourceRoot":"","sources":["../../src/models/SubjectModel.ts"],"names":[],"mappings":";;;AAAA,qCAAwC;AAQxC,IAAM,kBAAkB,GAAG,IAAI,iBAAM,CAAgB;IACjD,GAAG,EAAE,MAAM;IACX,SAAS,EAAE,MAAM;IACjB,WAAW,EAAE,MAAM;IACnB,aAAa,EAAE,MAAM;CACxB,CAAC,CAAA;AAEW,QAAA,YAAY,GAAG,gBAAK,CAAgB,cAAc,EAAE,kBAAkB,EAAE,cAAc,CAAC,CAAC"}

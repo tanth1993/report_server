@@ -1,0 +1,1 @@
+{"version":3,"file":"StudentModel.js","sourceRoot":"","sources":["../../src/models/StudentModel.ts"],"names":[],"mappings":";;;AAAA,qCAAwC;AAUxC,IAAM,kBAAkB,GAAG,IAAI,iBAAM,CAAgB;IACjD,GAAG,EAAE,MAAM;IACX,SAAS,EAAE,MAAM;IACjB,IAAI,EAAE,MAAM;IACZ,QAAQ,EAAE,MAAM;IAChB,MAAM,EAAE,OAAO;CAClB,CAAC,CAAA;AAEW,QAAA,YAAY,GAAG,gBAAK,CAAgB,cAAc,EAAE,kBAAkB,EAAE,cAAc,CAAC,CAAC"}

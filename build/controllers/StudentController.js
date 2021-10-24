@@ -35,34 +35,34 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-var express_1 = require("express");
-var _config_1 = __importDefault(require("../_config"));
-var SubjectController_1 = __importDefault(require("../controllers/SubjectController"));
-var StudentController_1 = __importDefault(require("../controllers/StudentController"));
-var GradeController_1 = __importDefault(require("../controllers/GradeController"));
-var GradeTenScoreController_1 = __importDefault(require("../controllers/GradeTenScoreController"));
-var GradeElevenScoreController_1 = __importDefault(require("../controllers/GradeElevenScoreController"));
-var GradeTwelveScoreController_1 = __importDefault(require("../controllers/GradeTwelveScoreController"));
-var router = express_1.Router();
-router.use(function (req, res, next) { return __awaiter(void 0, void 0, void 0, function () {
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0: return [4, _config_1.default()];
-            case 1:
-                _a.sent();
-                return [2, next()];
-        }
-    });
-}); });
-router.use('/subjects', SubjectController_1.default.index);
-router.use('/students', StudentController_1.default.index);
-router.use('/grades', GradeController_1.default.index);
-router.use('/grade-ten-score', GradeTenScoreController_1.default.index);
-router.use('/grade-eleven-score', GradeElevenScoreController_1.default.index);
-router.use('/grade-twelve-score', GradeTwelveScoreController_1.default.index);
-exports.default = router;
-//# sourceMappingURL=index.js.map
+var models_1 = require("../models");
+var StudentController = (function () {
+    function StudentController() {
+    }
+    StudentController.prototype.index = function (req, res) {
+        return __awaiter(this, void 0, void 0, function () {
+            var test, error_1;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        return [4, models_1.StudentModel.find({})];
+                    case 1:
+                        test = _a.sent();
+                        res.json(test);
+                        return [3, 3];
+                    case 2:
+                        error_1 = _a.sent();
+                        console.log(error_1);
+                        res.status(500).send(error_1);
+                        return [3, 3];
+                    case 3: return [2];
+                }
+            });
+        });
+    };
+    return StudentController;
+}());
+exports.default = new StudentController();
+//# sourceMappingURL=StudentController.js.map

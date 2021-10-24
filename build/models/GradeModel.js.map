@@ -1,0 +1,1 @@
+{"version":3,"file":"GradeModel.js","sourceRoot":"","sources":["../../src/models/GradeModel.ts"],"names":[],"mappings":";;;AAAA,qCAAwC;AAQxC,IAAM,gBAAgB,GAAG,IAAI,iBAAM,CAAc;IAC7C,GAAG,EAAE,MAAM;IACX,OAAO,EAAE,MAAM;IACf,IAAI,EAAE,MAAM;CACf,CAAC,CAAA;AAEW,QAAA,UAAU,GAAG,gBAAK,CAAc,YAAY,EAAE,gBAAgB,EAAE,YAAY,CAAC,CAAC"}
