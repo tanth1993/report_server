@@ -21,9 +21,12 @@ router.use('/students', StudentController.index)
 router.use('/grades', GradeController.index)
 
 router.use('/grade-ten-score', GradeTenScoreController.index)
+router.use('/avg-ten-score', GradeTenScoreController.getAvgScore)
 
 router.use('/grade-eleven-score', GradeElevenScoreController.index)
+router.use('/avg-eleven-score', GradeElevenScoreController.getAvgScore)
 
 router.use('/grade-twelve-score', GradeTwelveScoreController.index)
+router.use('/avg-twelve-score', GradeTwelveScoreController.getAvgScore)
 
 export default router
