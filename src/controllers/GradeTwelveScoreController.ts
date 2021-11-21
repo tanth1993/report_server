@@ -26,14 +26,7 @@ class GradeTwelveScoreController {
                         }
                     }
                 },
-                {
-                    "$group": {
-                        "_id": null,
-                        "total": {
-                            "$avg": "$total"
-                        }
-                    }
-                }
+
             ];
 
             const data = await GradeTwelveScoreModel.aggregate<ITotal<number>>(pipeline);
