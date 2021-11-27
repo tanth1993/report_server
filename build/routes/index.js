@@ -62,7 +62,10 @@ router.use('/subjects', SubjectController_1.default.index);
 router.use('/students', StudentController_1.default.index);
 router.use('/grades', GradeController_1.default.index);
 router.use('/grade-ten-score', GradeTenScoreController_1.default.index);
+router.use('/grade-ten-avg-scores', GradeTenScoreController_1.default.getAvgScore);
 router.use('/grade-eleven-score', GradeElevenScoreController_1.default.index);
+router.use('/grade-eleven-avg-scores', GradeElevenScoreController_1.default.getAvgScore);
 router.use('/grade-twelve-score', GradeTwelveScoreController_1.default.index);
+router.use('/grade-twelve-avg-scores', GradeTwelveScoreController_1.default.getAvgScore);
 exports.default = router;
 //# sourceMappingURL=index.js.map

@@ -62,6 +62,38 @@ var GradeTwelveScoreController = (function () {
             });
         });
     };
+    GradeTwelveScoreController.prototype.getAvgScore = function (req, res) {
+        return __awaiter(this, void 0, void 0, function () {
+            var pipeline, data, error_2;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        pipeline = [
+                            {
+                                "$group": {
+                                    "_id": "$subjectId",
+                                    "total": {
+                                        "$avg": "$score"
+                                    }
+                                }
+                            },
+                        ];
+                        return [4, models_1.GradeTwelveScoreModel.aggregate(pipeline)];
+                    case 1:
+                        data = _a.sent();
+                        res.json(data);
+                        return [3, 3];
+                    case 2:
+                        error_2 = _a.sent();
+                        console.log(error_2);
+                        res.status(500).send(error_2);
+                        return [3, 3];
+                    case 3: return [2];
+                }
+            });
+        });
+    };
     return GradeTwelveScoreController;
 }());
 exports.default = new GradeTwelveScoreController();
