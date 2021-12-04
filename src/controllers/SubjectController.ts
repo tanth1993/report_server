@@ -20,8 +20,9 @@ class SubjectController {
     async getAvgScoreEachYearBySubject(req: Request, res: Response) {
         const { query } = req
         const { subjectId } = query as IQuery
+
         if (!subjectId) {
-            res.status(500)
+            res.status(500).send('missing subjectId query')
             return
         }
 
@@ -29,7 +30,6 @@ class SubjectController {
             const avgScoreTen = GradeTenScoreController.getAvgScoreBySubject(subjectId);
             const avgScoreEleven = GradeElevenScoreController.getAvgScoreBySubject(subjectId);
             const avgScoreTwelve = GradeTwelveScoreController.getAvgScoreBySubject(subjectId);
-
 
             const datas = await Promise.all([avgScoreTen, avgScoreEleven, avgScoreTwelve])
 
@@ -44,10 +44,12 @@ class SubjectController {
     async getAmountStudentsInScoreScaleBySubject(req: Request, res: Response) {
         const { query } = req
         const { subjectId, gradeId } = query as IQuery
+
         if (!subjectId) {
-            res.status(500)
+            res.status(500).send('missing subjectId query')
             return
         }
+
         let rsp: ITotal<number>[] | null = []
         try {
             switch (gradeId) {

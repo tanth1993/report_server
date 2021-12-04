@@ -29,7 +29,7 @@ class GradeElevenScoreController {
 
             ];
 
-            const data = await GradeElevenScoreModel.aggregate<ITotal<number>>(pipeline);
+            const data = await GradeElevenScoreModel.aggregate<ITotal<string>>(pipeline);
 
             res.json(data);
         } catch (error) {
@@ -89,7 +89,7 @@ class GradeElevenScoreController {
                 },
             ];
 
-            const data = await GradeElevenScoreModel.aggregate<ITotal<number>>(pipeline);
+            const data = await GradeElevenScoreModel.aggregate<ITotal<string>>(pipeline);
 
             return data
         } catch (error) {

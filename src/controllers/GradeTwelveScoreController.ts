@@ -29,7 +29,7 @@ class GradeTwelveScoreController {
 
             ];
 
-            const data = await GradeTwelveScoreModel.aggregate<ITotal<number>>(pipeline);
+            const data = await GradeTwelveScoreModel.aggregate<ITotal<string>>(pipeline);
 
             res.json(data);
         } catch (error) {
