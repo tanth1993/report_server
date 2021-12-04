@@ -19,6 +19,8 @@ router.use('/subjects', SubjectController.index)
 router.use('/students', StudentController.index)
 
 router.use('/grades', GradeController.index)
+router.use('/avg-score-grades/:gradeId', GradeController.getAvgScoreByGrade)
+router.use('/avg-score-grades-by-gender', GradeController.getAvgScoreByGender)
 
 router.use('/grade-ten-score', GradeTenScoreController.index)
 router.use('/grade-ten-avg-scores', GradeTenScoreController.getAvgScore)

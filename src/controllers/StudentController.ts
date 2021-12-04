@@ -12,7 +12,24 @@ class StudentController {
             console.log(error)
             res.status(500).send(error);
         }
+    }
+    async getStudentsByGender(isMale?: boolean) {
+        const pipeline = [
+            {
+                "$match": {
+                    "isMale": isMale
+                }
+            },
+            {
+                "$project": {
+                    "studentId": 1.0,
+                    "_id": 0.0
+                }
+            }
+        ];
 
+        const data = await StudentModel.aggregate<{ studentId: string }>(pipeline);
+        return data;
     }
 }
 export default new StudentController()
