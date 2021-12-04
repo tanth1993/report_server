@@ -5,4 +5,5 @@ export interface ITotal<T> {
 export interface IQuery {
     isMale?: boolean
     gradeId?: number
+    subjectId?: string
 }

@@ -15,6 +15,8 @@ router.use(async (req, res, next) => {
 })
 
 router.use('/subjects', SubjectController.index)
+router.use('/avg-score-by-subject', SubjectController.getAvgScoreEachYearBySubject)
+router.use('/amount-in-scale-by-subject', SubjectController.getAmountStudentsInScoreScaleBySubject)
 
 router.use('/students', StudentController.index)
 

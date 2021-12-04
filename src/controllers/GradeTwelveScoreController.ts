@@ -37,5 +37,93 @@ class GradeTwelveScoreController {
             res.status(500).send(error);
         }
     }
+
+    async getAvgScoreByGenderList(genderList: string[]) {
+        if (genderList?.length === 0) return null
+
+        try {
+            const pipeline = [
+                {
+                    "$match": {
+                        "studentId": {
+                            "$in": genderList
+                        }
+                    }
+                },
+                {
+                    "$group": {
+                        "_id": "$subjectId",
+                        "total": {
+                            "$avg": "$score"
+                        }
+                    }
+                },
+            ];
+
+            const data = await GradeTwelveScoreModel.aggregate<ITotal<string>>(pipeline);
+
+            return data
+        } catch (error) {
+            console.log(error)
+            return null
+        }
+    }
+
+    async getAvgScoreBySubject(subjectId?: string) {
+        if (!subjectId) return null
+
+        try {
+            const pipeline = [
+                {
+                    "$match": {
+                        "subjectId": subjectId
+                    }
+                },
+                {
+                    "$group": {
+                        "_id": "$gradeId",
+                        "total": {
+                            "$avg": "$score"
+                        }
+                    }
+                },
+            ];
+
+            const data = await GradeTwelveScoreModel.aggregate<ITotal<string>>(pipeline);
+
+            return data
+        } catch (error) {
+            console.log(error)
+            return null
+        }
+    }
+    async getScaleScoreBySubject(subjectId?: string) {
+        if (!subjectId) return null
+
+        try {
+            const pipeline = [
+                {
+                    "$match": {
+                        "subjectId": subjectId
+                    }
+                },
+                {
+                    "$group": {
+                        "_id": "$score",
+                        "total": {
+                            "$sum": 1
+                        }
+                    }
+                },
+            ];
+
+            const data = await GradeTwelveScoreModel.aggregate<ITotal<number>>(pipeline);
+
+            return data
+        } catch (error) {
+            console.log(error)
+            return null
+        }
+    }
 }
 export default new GradeTwelveScoreController()

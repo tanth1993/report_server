@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import { GradeModel } from '@dev/models'
-import { IQuery } from '@dev/interfaces'
+import { IQuery, ITotal } from '@dev/interfaces'
 import GradeTenScoreController from '@dev/controllers/GradeTenScoreController'
 import GradeElevenScoreController from '@dev/controllers/GradeElevenScoreController'
 import GradeTwelveScoreController from '@dev/controllers/GradeTwelveScoreController'
@@ -11,8 +11,8 @@ class GradeController {
 
     async index(req: Request, res: Response) {
         try {
-            const test = await GradeModel.find({})
-            res.json(test);
+            const data = await GradeModel.find({})
+            res.json(data);
         } catch (error) {
             console.log(error)
             res.status(500).send(error);
@@ -36,11 +36,36 @@ class GradeController {
     }
 
     async getAvgScoreByGender(req: Request, res: Response) {
-        const { params, query } = req
-        const { isMale } = query as IQuery
+        const { query } = req
+        const { isMale, gradeId } = query as IQuery
         const data = await StudentController.getStudentsByGender(isMale);
         const list = data.map(d => d?.studentId)
-        console.log(list)
+
+        let rsp: ITotal<string>[] | null = []
+
+        switch (gradeId) {
+            case 10:
+                rsp = await GradeTenScoreController.getAvgScoreByGenderList(list)
+                break;
+            case 11:
+                rsp = await GradeElevenScoreController.getAvgScoreByGenderList(list)
+                break;
+            case 12:
+                rsp = await GradeTwelveScoreController.getAvgScoreByGenderList(list)
+                break;
+
+            default:
+                res.status(500).send('missing gradeId query')
+                break;
+        }
+
+        if (!rsp) {
+            res.status(500).send('Error response')
+            return
+        }
+
+        res.json(rsp)
+
     }
 }
 export default new GradeController()
