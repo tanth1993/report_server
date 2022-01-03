@@ -33,8 +33,13 @@ class SubjectController {
 
             const datas = await Promise.all([avgScoreTen, avgScoreEleven, avgScoreTwelve])
 
-            console.log(datas)
-            res.json(datas);
+            const flattenData: ITotal<string>[] = [];
+
+            (datas as ITotal<string>[][]).map((dList: ITotal<string>[]) => {
+                flattenData.push(...dList)
+            })
+
+            res.json(flattenData);
         } catch (error) {
             console.log(error)
             res.status(500).send(error);
