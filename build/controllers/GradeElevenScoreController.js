@@ -94,6 +94,125 @@ var GradeElevenScoreController = (function () {
             });
         });
     };
+    GradeElevenScoreController.prototype.getAvgScoreByGenderList = function (genderList) {
+        return __awaiter(this, void 0, void 0, function () {
+            var pipeline, data, error_3;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        if ((genderList === null || genderList === void 0 ? void 0 : genderList.length) === 0)
+                            return [2, null];
+                        _a.label = 1;
+                    case 1:
+                        _a.trys.push([1, 3, , 4]);
+                        pipeline = [
+                            {
+                                "$match": {
+                                    "studentId": {
+                                        "$in": genderList
+                                    }
+                                }
+                            },
+                            {
+                                "$group": {
+                                    "_id": "$subjectId",
+                                    "total": {
+                                        "$avg": "$score"
+                                    }
+                                }
+                            },
+                        ];
+                        return [4, models_1.GradeElevenScoreModel.aggregate(pipeline)];
+                    case 2:
+                        data = _a.sent();
+                        return [2, data];
+                    case 3:
+                        error_3 = _a.sent();
+                        console.log(error_3);
+                        return [2, null];
+                    case 4: return [2];
+                }
+            });
+        });
+    };
+    GradeElevenScoreController.prototype.getAvgScoreBySubject = function (subjectId) {
+        return __awaiter(this, void 0, void 0, function () {
+            var pipeline, data, error_4;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        if (!subjectId)
+                            return [2, null];
+                        _a.label = 1;
+                    case 1:
+                        _a.trys.push([1, 3, , 4]);
+                        pipeline = [
+                            {
+                                "$match": {
+                                    "subjectId": subjectId
+                                }
+                            },
+                            {
+                                "$group": {
+                                    "_id": "$gradeId",
+                                    "total": {
+                                        "$avg": "$score"
+                                    }
+                                }
+                            },
+                        ];
+                        return [4, models_1.GradeElevenScoreModel.aggregate(pipeline)];
+                    case 2:
+                        data = _a.sent();
+                        return [2, data];
+                    case 3:
+                        error_4 = _a.sent();
+                        console.log(error_4);
+                        return [2, null];
+                    case 4: return [2];
+                }
+            });
+        });
+    };
+    GradeElevenScoreController.prototype.getScaleScoreBySubject = function (subjectId) {
+        return __awaiter(this, void 0, void 0, function () {
+            var pipeline, data, error_5;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        if (!subjectId)
+                            return [2, null];
+                        _a.label = 1;
+                    case 1:
+                        _a.trys.push([1, 3, , 4]);
+                        pipeline = [
+                            {
+                                "$match": {
+                                    "subjectId": subjectId
+                                }
+                            },
+                            {
+                                "$group": {
+                                    "_id": "$score",
+                                    "total": {
+                                        "$sum": 1
+                                    }
+                                }
+                            },
+                        ];
+                        return [4, models_1.GradeElevenScoreModel.aggregate(pipeline)];
+                    case 2:
+                        data = _a.sent();
+                        return [2, data];
+                    case 3:
+                        error_5 = _a.sent();
+                        console.log(error_5);
+                        return [2, null];
+                    case 4: return [2];
+                }
+            });
+        });
+    };
     return GradeElevenScoreController;
 }());
 exports.default = new GradeElevenScoreController();

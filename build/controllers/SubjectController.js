@@ -35,22 +35,28 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var models_1 = require("../models");
+var GradeTenScoreController_1 = __importDefault(require("../controllers/GradeTenScoreController"));
+var GradeElevenScoreController_1 = __importDefault(require("../controllers/GradeElevenScoreController"));
+var GradeTwelveScoreController_1 = __importDefault(require("../controllers/GradeTwelveScoreController"));
 var SubjectController = (function () {
     function SubjectController() {
     }
     SubjectController.prototype.index = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
-            var test, error_1;
+            var data, error_1;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
                         return [4, models_1.SubjectModel.find({})];
                     case 1:
-                        test = _a.sent();
-                        res.json(test);
+                        data = _a.sent();
+                        res.json(data);
                         return [3, 3];
                     case 2:
                         error_1 = _a.sent();
@@ -58,6 +64,94 @@ var SubjectController = (function () {
                         res.status(500).send(error_1);
                         return [3, 3];
                     case 3: return [2];
+                }
+            });
+        });
+    };
+    SubjectController.prototype.getAvgScoreEachYearBySubject = function (req, res) {
+        return __awaiter(this, void 0, void 0, function () {
+            var query, subjectId, avgScoreTen, avgScoreEleven, avgScoreTwelve, datas, flattenData_1, error_2;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        query = req.query;
+                        subjectId = query.subjectId;
+                        if (!subjectId) {
+                            res.status(500).send('missing subjectId query');
+                            return [2];
+                        }
+                        _a.label = 1;
+                    case 1:
+                        _a.trys.push([1, 3, , 4]);
+                        avgScoreTen = GradeTenScoreController_1.default.getAvgScoreBySubject(subjectId);
+                        avgScoreEleven = GradeElevenScoreController_1.default.getAvgScoreBySubject(subjectId);
+                        avgScoreTwelve = GradeTwelveScoreController_1.default.getAvgScoreBySubject(subjectId);
+                        return [4, Promise.all([avgScoreTen, avgScoreEleven, avgScoreTwelve])];
+                    case 2:
+                        datas = _a.sent();
+                        flattenData_1 = [];
+                        datas.map(function (dList) {
+                            flattenData_1.push.apply(flattenData_1, dList);
+                        });
+                        res.json(flattenData_1);
+                        return [3, 4];
+                    case 3:
+                        error_2 = _a.sent();
+                        console.log(error_2);
+                        res.status(500).send(error_2);
+                        return [3, 4];
+                    case 4: return [2];
+                }
+            });
+        });
+    };
+    SubjectController.prototype.getAmountStudentsInScoreScaleBySubject = function (req, res) {
+        return __awaiter(this, void 0, void 0, function () {
+            var query, _a, subjectId, gradeId, rsp, _b, error_3;
+            return __generator(this, function (_c) {
+                switch (_c.label) {
+                    case 0:
+                        query = req.query;
+                        _a = query, subjectId = _a.subjectId, gradeId = _a.gradeId;
+                        if (!subjectId) {
+                            res.status(500).send('missing subjectId query');
+                            return [2];
+                        }
+                        rsp = [];
+                        _c.label = 1;
+                    case 1:
+                        _c.trys.push([1, 10, , 11]);
+                        _b = gradeId;
+                        switch (_b) {
+                            case 10: return [3, 2];
+                            case 11: return [3, 4];
+                            case 12: return [3, 6];
+                        }
+                        return [3, 8];
+                    case 2: return [4, GradeTenScoreController_1.default.getScaleScoreBySubject(subjectId)];
+                    case 3:
+                        rsp = _c.sent();
+                        return [3, 9];
+                    case 4: return [4, GradeElevenScoreController_1.default.getScaleScoreBySubject(subjectId)];
+                    case 5:
+                        rsp = _c.sent();
+                        return [3, 9];
+                    case 6: return [4, GradeTwelveScoreController_1.default.getScaleScoreBySubject(subjectId)];
+                    case 7:
+                        rsp = _c.sent();
+                        return [3, 9];
+                    case 8:
+                        res.status(500).send('missing gradeId query');
+                        return [2];
+                    case 9:
+                        res.json(rsp);
+                        return [3, 11];
+                    case 10:
+                        error_3 = _c.sent();
+                        console.log(error_3);
+                        res.status(500).send(error_3);
+                        return [3, 11];
+                    case 11: return [2];
                 }
             });
         });

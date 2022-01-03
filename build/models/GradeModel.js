@@ -6,6 +6,7 @@ var GradeModelSchema = new mongoose_1.Schema({
     _id: String,
     gradeId: String,
     name: String,
+    number: Number
 });
 exports.GradeModel = mongoose_1.model("GradeModel", GradeModelSchema, 'GradeModel');
 //# sourceMappingURL=GradeModel.js.map

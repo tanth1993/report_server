@@ -35,22 +35,29 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var models_1 = require("../models");
+var GradeTenScoreController_1 = __importDefault(require("../controllers/GradeTenScoreController"));
+var GradeElevenScoreController_1 = __importDefault(require("../controllers/GradeElevenScoreController"));
+var GradeTwelveScoreController_1 = __importDefault(require("../controllers/GradeTwelveScoreController"));
+var StudentController_1 = __importDefault(require("../controllers/StudentController"));
 var GradeController = (function () {
     function GradeController() {
     }
     GradeController.prototype.index = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
-            var test, error_1;
+            var data, error_1;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
                         return [4, models_1.GradeModel.find({})];
                     case 1:
-                        test = _a.sent();
-                        res.json(test);
+                        data = _a.sent();
+                        res.json(data);
                         return [3, 3];
                     case 2:
                         error_1 = _a.sent();
@@ -58,6 +65,84 @@ var GradeController = (function () {
                         res.status(500).send(error_1);
                         return [3, 3];
                     case 3: return [2];
+                }
+            });
+        });
+    };
+    GradeController.prototype.getAvgScoreByGrade = function (req, res) {
+        return __awaiter(this, void 0, void 0, function () {
+            var params, _a;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
+                    case 0:
+                        params = req.params;
+                        _a = +params.gradeId;
+                        switch (_a) {
+                            case 10: return [3, 1];
+                            case 11: return [3, 3];
+                            case 12: return [3, 5];
+                        }
+                        return [3, 7];
+                    case 1: return [4, GradeTenScoreController_1.default.getAvgScore(req, res)];
+                    case 2:
+                        _b.sent();
+                        return [2];
+                    case 3: return [4, GradeElevenScoreController_1.default.getAvgScore(req, res)];
+                    case 4:
+                        _b.sent();
+                        return [2];
+                    case 5: return [4, GradeTwelveScoreController_1.default.getAvgScore(req, res)];
+                    case 6:
+                        _b.sent();
+                        return [2];
+                    case 7: return [3, 8];
+                    case 8: return [2];
+                }
+            });
+        });
+    };
+    GradeController.prototype.getAvgScoreByGender = function (req, res) {
+        return __awaiter(this, void 0, void 0, function () {
+            var query, _a, isMale, gradeId, data, list, rsp, _b;
+            return __generator(this, function (_c) {
+                switch (_c.label) {
+                    case 0:
+                        query = req.query;
+                        _a = query, isMale = _a.isMale, gradeId = _a.gradeId;
+                        return [4, StudentController_1.default.getStudentsByGender(isMale)];
+                    case 1:
+                        data = _c.sent();
+                        list = data.map(function (d) { return d === null || d === void 0 ? void 0 : d.studentId; });
+                        rsp = [];
+                        _b = gradeId;
+                        switch (_b) {
+                            case 10: return [3, 2];
+                            case 11: return [3, 4];
+                            case 12: return [3, 6];
+                        }
+                        return [3, 8];
+                    case 2: return [4, GradeTenScoreController_1.default.getAvgScoreByGenderList(list)];
+                    case 3:
+                        rsp = _c.sent();
+                        return [3, 9];
+                    case 4: return [4, GradeElevenScoreController_1.default.getAvgScoreByGenderList(list)];
+                    case 5:
+                        rsp = _c.sent();
+                        return [3, 9];
+                    case 6: return [4, GradeTwelveScoreController_1.default.getAvgScoreByGenderList(list)];
+                    case 7:
+                        rsp = _c.sent();
+                        return [3, 9];
+                    case 8:
+                        res.status(500).send('missing gradeId query');
+                        return [3, 9];
+                    case 9:
+                        if (!rsp) {
+                            res.status(500).send('Error response');
+                            return [2];
+                        }
+                        res.json(rsp);
+                        return [2];
                 }
             });
         });

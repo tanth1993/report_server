@@ -6,9 +6,16 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = __importDefault(require("express"));
 var routes_1 = __importDefault(require("./routes"));
 var cors_1 = __importDefault(require("cors"));
+var express_query_parser_1 = require("express-query-parser");
 var app = express_1.default();
 var port = 3099;
 app.use(cors_1.default());
+app.use(express_query_parser_1.queryParser({
+    parseNull: true,
+    parseUndefined: true,
+    parseBoolean: true,
+    parseNumber: true
+}));
 app.use('/api/entry', function (req, res) {
     res.send('api/entry without connect MongoDB');
 });

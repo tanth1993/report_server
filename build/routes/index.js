@@ -59,8 +59,12 @@ router.use(function (req, res, next) { return __awaiter(void 0, void 0, void 0, 
     });
 }); });
 router.use('/subjects', SubjectController_1.default.index);
+router.use('/avg-score-by-subject', SubjectController_1.default.getAvgScoreEachYearBySubject);
+router.use('/amount-in-scale-by-subject', SubjectController_1.default.getAmountStudentsInScoreScaleBySubject);
 router.use('/students', StudentController_1.default.index);
 router.use('/grades', GradeController_1.default.index);
+router.use('/avg-score-grades/:gradeId', GradeController_1.default.getAvgScoreByGrade);
+router.use('/avg-score-grades-by-gender', GradeController_1.default.getAvgScoreByGender);
 router.use('/grade-ten-score', GradeTenScoreController_1.default.index);
 router.use('/grade-ten-avg-scores', GradeTenScoreController_1.default.getAvgScore);
 router.use('/grade-eleven-score', GradeElevenScoreController_1.default.index);

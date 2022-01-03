@@ -62,6 +62,33 @@ var StudentController = (function () {
             });
         });
     };
+    StudentController.prototype.getStudentsByGender = function (isMale) {
+        return __awaiter(this, void 0, void 0, function () {
+            var pipeline, data;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        pipeline = [
+                            {
+                                "$match": {
+                                    "isMale": isMale
+                                }
+                            },
+                            {
+                                "$project": {
+                                    "studentId": 1.0,
+                                    "_id": 0.0
+                                }
+                            }
+                        ];
+                        return [4, models_1.StudentModel.aggregate(pipeline)];
+                    case 1:
+                        data = _a.sent();
+                        return [2, data];
+                }
+            });
+        });
+    };
     return StudentController;
 }());
 exports.default = new StudentController();
