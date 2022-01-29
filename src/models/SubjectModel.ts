@@ -1,13 +1,13 @@
 import { Schema, model } from 'mongoose'
 interface ISubjectModel {
-    _id?: string
+    // _id?: string
     subjectId?: string
     subjectName?: string
     subjectNameVN?: string
 }
 
 const SubjectModelSchema = new Schema<ISubjectModel>({
-    _id: String,
+    // _id: String,
     subjectId: String,
     subjectName: String,
     subjectNameVN: String,

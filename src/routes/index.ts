@@ -20,6 +20,8 @@ router.use('/amount-in-scale-by-subject', SubjectController.getAmountStudentsInS
 
 router.use('/students', StudentController.index)
 router.use('/get-students-by-query', StudentController.getStudentsByQuery)
+router.use('/get-student-detail/:id', StudentController.getStudentDetail)
+router.use('/get-score-student/:studentId/:gradeId', StudentController.getStudentScoreByGrade)
 
 
 router.use('/grades', GradeController.index)

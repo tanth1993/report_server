@@ -2,7 +2,11 @@ import { Request, Response, NextFunction } from 'express';
 import { StudentModel } from '@dev/models'
 import * as Interfaces from '@dev/interfaces';
 import { IStudentModel } from '@dev/models/StudentModel';
-;
+import { isValidObjectId, Types } from 'mongoose';
+import GradeTenScoreController from '@dev/controllers/GradeTenScoreController';
+import GradeElevenScoreController from '@dev/controllers/GradeElevenScoreController';
+import GradeTwelveScoreController from '@dev/controllers/GradeTwelveScoreController';
+
 
 class StudentController {
     constructor() { }
@@ -16,6 +20,7 @@ class StudentController {
             res.status(500).send(error);
         }
     }
+
     async getStudentsByQuery(req: Request, res: Response) {
         try {
             const { query } = req
@@ -36,6 +41,52 @@ class StudentController {
             console.log(error)
             res.status(500).send(error);
         }
+    }
+
+    async getStudentDetail(req: Request, res: Response) {
+        const { id } = req.params
+        try {
+            if (!isValidObjectId(id))
+                throw new Error("missing id");
+
+            const objectId = new Types.ObjectId(id)
+            const data = await StudentModel.find({ _id: objectId })
+
+            res.json(data);
+        } catch (error) {
+            console.log(error)
+            res.status(500).send(error);
+        }
+    }
+
+    async getStudentScoreByGrade(req: Request, res: Response) {
+        const { studentId, gradeId } = req.params
+        try {
+            if (!studentId || !gradeId)
+                throw new Error("missing studentId or GradeId");
+
+            let rsp;
+            switch (+gradeId) {
+                case 10:
+                    rsp = await GradeTenScoreController.getDataByStudentId(studentId)
+                    break;
+                case 11:
+                    rsp = await GradeElevenScoreController.getDataByStudentId(studentId)
+                    break;
+                case 12:
+                    rsp = await GradeTwelveScoreController.getDataByStudentId(studentId)
+                    break;
+
+                default:
+                    throw new Error('missing gradeId query')
+            }
+
+            res.json(rsp);
+        } catch (error) {
+            console.log(error)
+            res.status(500).send(error);
+        }
+
     }
 
     async getStudentsByGender(isMale?: boolean) {

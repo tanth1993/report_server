@@ -125,5 +125,11 @@ class GradeTwelveScoreController {
             return null
         }
     }
+
+    async getDataByStudentId(studentId: string) {
+        if (!studentId) return null
+        const data = await GradeTwelveScoreModel.find({ studentId })
+        return data;
+    }
 }
 export default new GradeTwelveScoreController()

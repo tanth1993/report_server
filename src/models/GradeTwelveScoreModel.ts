@@ -1,7 +1,7 @@
 import { Schema, model } from 'mongoose'
 
 interface IGradeTwelveScoreModel {
-    _id?: string
+    // _id?: string
     gradeId?: string
     subjectId?: string
     score?: number
@@ -10,7 +10,7 @@ interface IGradeTwelveScoreModel {
 }
 
 const GradeTwelveScoreModelSchema = new Schema<IGradeTwelveScoreModel>({
-    _id: String,
+    // _id: String,
     gradeId: String,
     subjectId: String,
     score: Number,

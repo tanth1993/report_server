@@ -96,6 +96,9 @@ class GradeTenScoreController {
             return null
         }
     }
+
+
+
     async getScaleScoreBySubject(subjectId?: string) {
         if (!subjectId) return null
 
@@ -123,6 +126,12 @@ class GradeTenScoreController {
             console.log(error)
             return null
         }
+    }
+
+    async getDataByStudentId(studentId: string) {
+        if (!studentId) return null
+        const data = await GradeTenScoreModel.find({ studentId })
+        return data;
     }
 }
 export default new GradeTenScoreController()

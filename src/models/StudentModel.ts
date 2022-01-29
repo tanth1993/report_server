@@ -1,7 +1,7 @@
 import { Schema, model } from 'mongoose'
 
 export interface IStudentModel {
-    _id?: string
+    // _id?: string
     studentId?: string
     name?: string
     birthday?: string
@@ -9,7 +9,7 @@ export interface IStudentModel {
 }
 
 const StudentModelSchema = new Schema<IStudentModel>({
-    _id: String,
+    // _id: String,
     studentId: String,
     name: String,
     birthday: String,
