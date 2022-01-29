@@ -1,5 +1,8 @@
 import { Request, Response, NextFunction } from 'express';
 import { StudentModel } from '@dev/models'
+import * as Interfaces from '@dev/interfaces';
+import { IStudentModel } from '@dev/models/StudentModel';
+;
 
 class StudentController {
     constructor() { }
@@ -13,6 +16,28 @@ class StudentController {
             res.status(500).send(error);
         }
     }
+    async getStudentsByQuery(req: Request, res: Response) {
+        try {
+            const { query } = req
+            if (!(Object.keys(query)?.length > 0))
+                throw new Error("missing Query");
+
+            const { text, page = 1, pageSize = 10 } = query as Interfaces.IPaginationQuery
+            const skip = page > 0 ? (page - 1) * pageSize : 0
+            const textStr = text ? text.toString() : ''
+            const textPattern = new RegExp(textStr, 'i')
+
+            const data = await StudentModel.find({ name: textPattern }).skip(skip).limit(pageSize)
+            const totalCount = await StudentModel.find({ name: textPattern }).count();
+
+            const paginationData: Interfaces.IPaginationData<IStudentModel[]> = { data, totalCount }
+            res.json(paginationData);
+        } catch (error) {
+            console.log(error)
+            res.status(500).send(error);
+        }
+    }
+
     async getStudentsByGender(isMale?: boolean) {
         const pipeline = [
             {

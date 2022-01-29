@@ -19,6 +19,8 @@ router.use('/avg-score-by-subject', SubjectController.getAvgScoreEachYearBySubje
 router.use('/amount-in-scale-by-subject', SubjectController.getAmountStudentsInScoreScaleBySubject)
 
 router.use('/students', StudentController.index)
+router.use('/get-students-by-query', StudentController.getStudentsByQuery)
+
 
 router.use('/grades', GradeController.index)
 router.use('/avg-score-grades/:gradeId', GradeController.getAvgScoreByGrade)

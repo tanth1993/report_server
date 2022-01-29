@@ -1,6 +1,6 @@
 import { Schema, model } from 'mongoose'
 
-interface IStudentModel {
+export interface IStudentModel {
     _id?: string
     studentId?: string
     name?: string
