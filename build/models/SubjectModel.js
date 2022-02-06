@@ -3,7 +3,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.SubjectModel = void 0;
 var mongoose_1 = require("mongoose");
 var SubjectModelSchema = new mongoose_1.Schema({
-    _id: String,
     subjectId: String,
     subjectName: String,
     subjectNameVN: String,

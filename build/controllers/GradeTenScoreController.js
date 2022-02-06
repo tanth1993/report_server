@@ -213,6 +213,22 @@ var GradeTenScoreController = (function () {
             });
         });
     };
+    GradeTenScoreController.prototype.getDataByStudentId = function (studentId) {
+        return __awaiter(this, void 0, void 0, function () {
+            var data;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        if (!studentId)
+                            return [2, null];
+                        return [4, models_1.GradeTenScoreModel.find({ studentId: studentId })];
+                    case 1:
+                        data = _a.sent();
+                        return [2, data];
+                }
+            });
+        });
+    };
     return GradeTenScoreController;
 }());
 exports.default = new GradeTenScoreController();
