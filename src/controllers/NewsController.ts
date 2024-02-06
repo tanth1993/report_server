@@ -77,7 +77,6 @@ class NewsController {
 
             const doc: INewsModel = req.body
             const data = await NewsModel.findOneAndUpdate({ _id: req.params?.id }, doc, { returnOriginal: false });
-            console.log(data)
             res.json(data);
         } catch (error) {
             console.log(error)
