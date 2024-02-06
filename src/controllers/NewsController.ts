@@ -67,6 +67,23 @@ class NewsController {
             res.status(500).send(error);
         }
     }
+    async updateNews(req: Request, res: Response) {
+        try {
+            if (!req.body)
+                throw new Error("missing Body Request");
+
+            if (!req.params?.id)
+                throw new Error("missing Id");
+
+            const doc: INewsModel = req.body
+            const data = await NewsModel.findOneAndUpdate({ _id: req.params?.id }, doc, { returnOriginal: false });
+            console.log(data)
+            res.json(data);
+        } catch (error) {
+            console.log(error)
+            res.status(500).send(error);
+        }
+    }
 
 }
 export default new NewsController()

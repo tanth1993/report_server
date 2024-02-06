@@ -44,5 +44,6 @@ router.get('/news', NewsController.index)
 router.use('/news-by-query', NewsController.getDataByQuery)
 router.get('/news/:id', NewsController.getDetail)
 router.post('/news-create', jsonParser, NewsController.createNews)
+router.put('/news-update/:id', jsonParser, NewsController.updateNews)
 
 export default router
