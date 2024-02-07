@@ -53,6 +53,20 @@ class NewsController {
             res.status(500).send(error);
         }
     }
+    async deleteMany(req: Request, res: Response) {
+        try {
+            const { ids } = req?.query
+            if (!ids)
+                throw new Error("missing Query Ids");
+
+            const idArr = (ids as string)?.split(',')
+            const data = await NewsModel.deleteMany({ _id: { $in: idArr } })
+            res.json(data);
+        } catch (error) {
+            console.log(error)
+            res.status(500).send(error);
+        }
+    }
     async createNews(req: Request, res: Response) {
         try {
             if (!req.body)
