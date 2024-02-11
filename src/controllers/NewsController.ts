@@ -9,7 +9,7 @@ class NewsController {
 
     async index(req: Request, res: Response) {
         try {
-            const data = await NewsModel.find({})
+            const data = await NewsModel.find({}).sort({ createdAt: -1 })
             res.json(data);
         } catch (error) {
             console.log(error)
