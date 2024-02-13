@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.SubjectModel = exports.StudentModel = exports.GradeTwelveScoreModel = exports.GradeTenScoreModel = exports.GradeModel = exports.GradeElevenScoreModel = void 0;
+exports.NewsModel = exports.SubjectModel = exports.StudentModel = exports.GradeTwelveScoreModel = exports.GradeTenScoreModel = exports.GradeModel = exports.GradeElevenScoreModel = void 0;
 var GradeElevenScoreModel_1 = require("./GradeElevenScoreModel");
 Object.defineProperty(exports, "GradeElevenScoreModel", { enumerable: true, get: function () { return GradeElevenScoreModel_1.GradeElevenScoreModel; } });
 var GradeModel_1 = require("./GradeModel");
@@ -13,4 +13,6 @@ var StudentModel_1 = require("./StudentModel");
 Object.defineProperty(exports, "StudentModel", { enumerable: true, get: function () { return StudentModel_1.StudentModel; } });
 var SubjectModel_1 = require("./SubjectModel");
 Object.defineProperty(exports, "SubjectModel", { enumerable: true, get: function () { return SubjectModel_1.SubjectModel; } });
+var NewsModel_1 = require("./NewsModel");
+Object.defineProperty(exports, "NewsModel", { enumerable: true, get: function () { return NewsModel_1.NewsModel; } });
 //# sourceMappingURL=index.js.map

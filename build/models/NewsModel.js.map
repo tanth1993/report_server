@@ -1,0 +1,1 @@
+{"version":3,"file":"NewsModel.js","sourceRoot":"","sources":["../../src/models/NewsModel.ts"],"names":[],"mappings":";;;AAAA,qCAAwC;AAOxC,IAAM,eAAe,GAAG,IAAI,iBAAM,CAAa;IAC3C,KAAK,EAAE,MAAM;IACb,OAAO,EAAE,MAAM;IACf,QAAQ,EAAE,MAAM;CACnB,EAAE,EAAE,UAAU,EAAE,IAAI,GAAG,CAAC,CAAA;AAEZ,QAAA,SAAS,GAAG,gBAAK,CAAa,WAAW,EAAE,eAAe,EAAE,WAAW,CAAC,CAAC"}

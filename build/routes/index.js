@@ -40,6 +40,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = require("express");
+var body_parser_1 = require("body-parser");
 var _config_1 = __importDefault(require("../_config"));
 var SubjectController_1 = __importDefault(require("../controllers/SubjectController"));
 var StudentController_1 = __importDefault(require("../controllers/StudentController"));
@@ -47,7 +48,9 @@ var GradeController_1 = __importDefault(require("../controllers/GradeController"
 var GradeTenScoreController_1 = __importDefault(require("../controllers/GradeTenScoreController"));
 var GradeElevenScoreController_1 = __importDefault(require("../controllers/GradeElevenScoreController"));
 var GradeTwelveScoreController_1 = __importDefault(require("../controllers/GradeTwelveScoreController"));
+var NewsController_1 = __importDefault(require("../controllers/NewsController"));
 var router = express_1.Router();
+var jsonParser = body_parser_1.json();
 router.use(function (req, res, next) { return __awaiter(void 0, void 0, void 0, function () {
     return __generator(this, function (_a) {
         switch (_a.label) {
@@ -74,5 +77,11 @@ router.use('/grade-eleven-score', GradeElevenScoreController_1.default.index);
 router.use('/grade-eleven-avg-scores', GradeElevenScoreController_1.default.getAvgScore);
 router.use('/grade-twelve-score', GradeTwelveScoreController_1.default.index);
 router.use('/grade-twelve-avg-scores', GradeTwelveScoreController_1.default.getAvgScore);
+router.get('/news', NewsController_1.default.index);
+router.use('/news-by-query', NewsController_1.default.getDataByQuery);
+router.get('/news/:id', NewsController_1.default.getDetail);
+router.post('/news-create', jsonParser, NewsController_1.default.createNews);
+router.put('/news-update/:id', jsonParser, NewsController_1.default.updateNews);
+router.delete('/news-delete', NewsController_1.default.deleteMany);
 exports.default = router;
 //# sourceMappingURL=index.js.map
